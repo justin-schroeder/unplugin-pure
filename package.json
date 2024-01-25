@@ -1,6 +1,6 @@
 {
   "name": "unplugin-pure",
-  "version": "0.2.0",
+  "version": "0.0.0",
   "license": "MIT",
   "description": "Annotate functions as pure for Rollup, Vite, esbuild, and rspack",
   "repository": "justin-schroeder/unplugin-pure",
@@ -47,7 +47,7 @@
     "lint:prettier": "prettier --write --log-level warn",
     "prepack": "pnpm build",
     "prepublishOnly": "pnpm lint && pnpm test",
-    "release": "bumpp && npm publish",
+    "release": "bumpp && pnpm publish",
     "test": "vitest run",
     "test:types": "tsc --noEmit"
   },
