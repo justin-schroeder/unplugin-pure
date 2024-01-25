@@ -22,6 +22,8 @@ Install and add `unplugin-pure` to your Vite or Rollup config.
 pnpm add -D unplugin-pure
 ```
 
+### Vite/Rollup
+
 ```js
 import { defineConfig } from 'vite'
 import { PluginPure } from 'unplugin-pure'
@@ -35,6 +37,19 @@ export default defineConfig({
       // sourcemap: true,
     }),
   ],
+})
+```
+
+## esbuild
+
+```js
+import { esbuildPure } from 'unplugin-pure'
+
+await esbuild.build({
+  entryPoints: ['app.jsx'],
+  plugins: [esbuildPure({ functions: ['defineComponent'] })],
+  bundle: true,
+  outfile: 'out.js',
 })
 ```
 
