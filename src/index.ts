@@ -1,5 +1,6 @@
 import type { FilterPattern } from '@rollup/pluginutils'
 import MagicString from 'magic-string'
+import type { UnpluginFactory } from 'unplugin'
 import { createUnplugin } from 'unplugin'
 import { createFilter } from '@rollup/pluginutils'
 import { stripLiteral } from 'strip-literal'
@@ -11,7 +12,9 @@ export interface PureAnnotationsOptions {
   exclude?: FilterPattern
 }
 
-export const unpluginPure = createUnplugin((options: PureAnnotationsOptions) => {
+export const unpluginPureFactory: UnpluginFactory<PureAnnotationsOptions, boolean> = (
+  options: PureAnnotationsOptions
+) => {
   const FUNCTION_RE = new RegExp(
     `(?<!\\/\\* #__PURE__ \\*\\/ )(?<![a-zA-Z0-9_$])(${options.functions
       .join('|')
@@ -57,7 +60,9 @@ export const unpluginPure = createUnplugin((options: PureAnnotationsOptions) => 
       },
     },
   }
-})
+}
+
+export const unpluginPure = createUnplugin(unpluginPureFactory)
 
 /**
  * Maintain backwards compatibility with existing rollup setup.
