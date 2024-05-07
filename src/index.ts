@@ -8,6 +8,7 @@ import { stripLiteral } from 'strip-literal'
 export interface PureAnnotationsOptions {
   sourcemap?: boolean
   functions: string[]
+  rollupOrder: 'pre' | 'post'
   include?: FilterPattern
   exclude?: FilterPattern
 }
@@ -55,7 +56,7 @@ export const unpluginPureFactory: UnpluginFactory<PureAnnotationsOptions, boolea
     rollup: {
       name: 'rollup-plugin-pure',
       transform: {
-        order: 'post',
+        order: options.rollupOrder ?? 'post',
         handler: transform,
       },
     },
